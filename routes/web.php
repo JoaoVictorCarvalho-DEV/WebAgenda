@@ -19,6 +19,10 @@ Route::middleware(['auth'])->group(function () {
         function () {
             Route::get('create', [ContactController::class, 'create'])
                 ->name('create');
+            Route::post('store', [ContactController::class, 'store'])
+                ->name('store');
+            Route::get('index',[ContactController::class, 'index'])
+                ->name('index');
         }
     );
 });

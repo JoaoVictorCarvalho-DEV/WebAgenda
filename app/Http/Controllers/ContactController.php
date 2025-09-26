@@ -13,7 +13,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return Contact::all();
+        $contacts = Contact::all();
+        return Inertia::render('contact/index', compact('contacts'));
     }
 
     /**
@@ -29,7 +30,13 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+
+        $dados = [
+            'name'=> '',
+            'phone_number'=>$request,
+
+        ];
+
     }
 
     /**

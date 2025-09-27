@@ -34,7 +34,7 @@ class ContactStoreTest extends TestCase
         $response = $this->post(route('contact.store'), $dadosValidos);
 
         // ASSERT (Verificações)
-        $response->assertStatus(302);
+        $response->assertStatus(201);
         $response->assertRedirect(route('contact.index'));
         $this->assertDatabaseHas('contacts', [
             'email' => 'joao.silva@teste.com',

@@ -38,7 +38,11 @@ class ContactController extends Controller
 
         $user->contacts()->create($data);
 
-        return redirect()->route('contact.index')->with(['status' => 'ok', 'message' => 'Contact created successfully!'], 201);
+        return redirect()->route('contact.index')
+        ->with('success', [
+            'status' => 'ok', // ou 'success', para facilitar o CSS no React
+            'message' => 'Contact created successfully!'
+        ]);
     }
 
     /**

@@ -37,7 +37,7 @@ type ContactFormValues = z.infer<typeof formSchema>;
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Contatos',
-        href: '/contato', // Ajustado para ser mais genérico
+        href: '/contact/index', // Ajustado para ser mais genérico
     },
     {
         title: 'Cadastrar',
@@ -61,11 +61,11 @@ export default function CreateContact() {
     function onSubmit(values: ContactFormValues) {
         console.log("Formulário enviado com sucesso!", values);
 
-        router.post('/contact/store',values,{
-            onSuccess: ()=>{
+        router.post('/contact/store', values, {
+            onSuccess: () => {
                 console.log('Contato criado com sucesso!')
             },
-            onError: (errors)=>{
+            onError: (errors) => {
                 console.error('Erro ao salvar:', errors)
             }
         })
@@ -96,7 +96,7 @@ export default function CreateContact() {
                             )}
                         />
 
-                        {/* Exemplo de mais um campo: Email */}
+
                         <FormField
                             control={form.control}
                             name="phone_number"

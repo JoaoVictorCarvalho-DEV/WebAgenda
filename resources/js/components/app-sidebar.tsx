@@ -5,6 +5,7 @@ import {
     Command,
     Contact,
     Frame,
+    LayoutGrid,
     LifeBuoy,
     Map,
     PieChart,
@@ -37,6 +38,11 @@ const data = {
         avatar: "/avatars/shadcn.jpg",
     },
     navMain: [
+        {
+            title: 'Dashboard',
+            url: '/dashboard',
+            icon: LayoutGrid,
+        },
         {
             title: "Contatos",
             url: "#",
@@ -94,6 +100,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={data.navMain} />
+
                 {/* <NavProjects projects={data.projects} /> */}
                 <NavSecondary items={data.navSecondary} className="mt-auto" />
             </SidebarContent>

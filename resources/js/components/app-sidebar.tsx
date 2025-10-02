@@ -1,54 +1,86 @@
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import * as React from "react"
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { type NavItem, type NavGroup } from '@/types';
-import { Link } from '@inertiajs/react';
-import { BookOpen, BookPlus, Contact, Folder, LayoutGrid, ListPlus, Lock, Plus, PlusCircle, Search } from 'lucide-react';
+    BookOpen,
+    Bot,
+    Command,
+    Contact,
+    Frame,
+    LifeBuoy,
+    Map,
+    PieChart,
+    Send,
+    Settings2,
+    SquareTerminal,
+} from "lucide-react"
+
+import { NavMain } from "@/components/nav-main"
+import { NavProjects } from "@/components/nav-projects"
+import { NavSecondary } from "@/components/nav-secondary"
+import { NavUser } from "@/components/nav-user"
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar"
+
 import AppLogo from './app-logo';
+import { Link } from '@inertiajs/react';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        url: '/dashboard',
-        icon: LayoutGrid,
+const data = {
+    user: {
+        name: "shadcn",
+        email: "m@example.com",
+        avatar: "/avatars/shadcn.jpg",
     },
-];
+    navMain: [
+        {
+            title: "Contatos",
+            url: "#",
+            icon: Contact,
+            isActive: true,
+            items: [
+                {
+                    title: "Ver contatos",
+                    url: "/contact/index"
+                },
+                {
+                    title: "Adicionar novo contato",
+                    url: "/contact/create"
+                },
+            ],
+        },
+    ],
+    navSecondary: [
+        {
+            title: "Support",
+            url: "#",
+            icon: LifeBuoy,
+        },
+        {
+            title: "Feedback",
+            url: "#",
+            icon: Send,
+        },
+    ],
+    projects: [
+        {
+            name: "Design Engineering",
+            url: "#",
+            icon: Frame,
+        },
+    ],
+}
 
-const navGroupItems: NavGroup[] = [
-    {
-        title: "Contatos",
-        items: [
-            { title: "Ver contatos", url: "/contact/index", icon: Search },
-            { title: "Adicionar novo contato", url: "/contact/create", icon: BookPlus },
-        ],
-        icon: Contact
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        url: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        url: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
-
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar
+            className="top-[--header-height] !h-[calc(100svh-var(--header-height))]"
+            {...props}
+        >
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -60,16 +92,14 @@ export function AppSidebar() {
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-
             <SidebarContent>
-                <NavMain items={mainNavItems} />
-                <NavMain items={navGroupItems} />
+                <NavMain items={data.navMain} />
+                {/* <NavProjects projects={data.projects} /> */}
+                <NavSecondary items={data.navSecondary} className="mt-auto" />
             </SidebarContent>
-
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
-    );
+    )
 }

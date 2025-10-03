@@ -1,21 +1,15 @@
 import * as React from "react"
 import {
-    BookOpen,
-    Bot,
-    Command,
     Contact,
+    ContactIcon,
     Frame,
     LayoutGrid,
     LifeBuoy,
-    Map,
-    PieChart,
-    Send,
-    Settings2,
-    SquareTerminal,
+    Search,
+    Send
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
@@ -51,11 +45,13 @@ const data = {
             items: [
                 {
                     title: "Ver contatos",
-                    url: "/contact/index"
+                    url: "/contact/index",
+                    icon: Search
                 },
                 {
                     title: "Adicionar novo contato",
-                    url: "/contact/create"
+                    url: "/contact/create",
+                    icon: ContactIcon
                 },
             ],
         },

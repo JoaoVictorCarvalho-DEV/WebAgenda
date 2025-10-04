@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
-//import type { Contact } from '@/types'; // Assumindo que você tem um tipo Contact
+
 
 // 1. Definir o esquema de validação
 const formSchema = z.object({

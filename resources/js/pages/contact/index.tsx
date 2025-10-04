@@ -1,17 +1,19 @@
 import AppLayout from '@/layouts/app-layout'
 import { type BreadcrumbItem, type Contact as ContactType } from '@/types'
 import { Head, usePage } from '@inertiajs/react'
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { toast } from 'sonner'
 import { CheckCircle } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import { PlaceholderPattern } from '@/components/ui/placeholder-pattern'
 import {
     ResizablePanelGroup,
     ResizablePanel,
     ResizableHandle,
 } from '@/components/ui/resizable'
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern'
-
+import { Button } from "@/components/ui/button";
+import { delay } from '@/lib/utils';
+import { useScrollToItem } from '@/hooks/use-scroll-to-item';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Contato',
@@ -27,6 +29,19 @@ interface PagePropsContacts {
 
 export default function IndexContacts() {
     const { success, contacts } = usePage<PagePropsContacts>().props
+
+    const contactRefs = useRef<(HTMLDivElement | null)[]>([])
+
+    const { scrollToItem } = useScrollToItem();
+
+    async function scrollItems() {
+        await scrollToItem(5);
+        await delay(1200);
+        await scrollToItem(7);
+        await delay(1200);
+        await scrollToItem(9);
+    }
+
 
     useEffect(() => {
         if (success && success.message) {
@@ -52,13 +67,15 @@ export default function IndexContacts() {
                                 <p className="text-sm text-muted-foreground">
                                     Filtros
                                 </p>
+                                <Button className="self-start" onClick={scrollItems}>5º item</Button>
                             </div>
 
                             <div className="grid auto-rows-min gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                                {contacts.map((contact) => (
+                                {contacts.map((contact, index) => (
                                     <Card
+                                        ref={(el) => (contactRefs.current[index] = el)}
                                         key={contact.id}
-                                        className="hover:bg-secondary/90 focus-visible:ring focus-visible:ring-primary outline-none"
+                                        className="hover:bg-secondary/90 focus-visible:ring focus-visible:ring-primary outline-none contact-card"
                                         tabIndex={0}
                                     >
                                         <CardContent className="p-4">

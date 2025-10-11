@@ -37,7 +37,7 @@ export default function IndexContacts() {
 
     async function linearSearch(targetName: string) {
         const elements = document.querySelectorAll(".contact-card");
-        targetName = targetName.toLocaleLowerCase()
+        targetName = targetName.toLowerCase();
         for (let i = 0; i < elements.length; i++) {
             const element = elements[i] as HTMLElement;
             const name = element.dataset.name?.trim().toLowerCase() ?? "";
@@ -45,7 +45,7 @@ export default function IndexContacts() {
             scrollToItem(i);
             await delay(1100); // tempo de animação
 
-            if (name === targetName.toLowerCase()) {
+            if (name === targetName) {
                 console.log(`✅ Encontrado: ${name} no índice ${i}`);
                 element.classList.add("ring-2", "ring-primary");
                 await delay(2000)
@@ -54,6 +54,39 @@ export default function IndexContacts() {
                 break;
             }
         }
+    }
+
+    async function binarySearch(targetName: string) {
+        const elements = document.querySelectorAll('.contact-card');
+        targetName = targetName.toLowerCase();
+
+        let start = 0;
+        let end = elements.length - 1;
+        let mid;
+        while (start <= end) {
+            mid = start + Math.floor((end - start) / 2);
+            const element = elements[mid] as HTMLElement;
+            scrollToItem(mid)
+
+            const name = element.dataset.name?.trim().toLowerCase() ?? "";
+            console.log(name)
+            if (name == targetName){
+                console.log(`✅ Encontrado: ${name} no índice ${mid}`)
+                element.classList.add("ring-2", "ring-primary");
+                await delay(2000)
+                element.classList.remove("ring-2", "ring-primary");
+                element.focus()
+                break;
+            }
+
+            if( name > targetName ){
+                end = mid - 1
+            }else{
+                start = mid + 1
+            }
+            await delay(2000)
+        }
+
     }
 
 
@@ -82,7 +115,10 @@ export default function IndexContacts() {
                                 <p className="text-sm text-muted-foreground">
                                     Filtros
                                 </p>
-                                <Button className='self-start' onClick={() => { linearSearch('Danial Collier') }}>Busca Linear</Button>
+                                <div className='flex gap-4'>
+                                    <Button className='self-start' onClick={() => { linearSearch('Prof. Yvonne Berge') }}>Busca Linear</Button>
+                                    <Button className='self-start' onClick={() => { binarySearch('Prof. Yvonne Berge') }}>Busca Binária</Button>
+                                </div>
                             </div>
 
                             <div className="grid auto-rows-min gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

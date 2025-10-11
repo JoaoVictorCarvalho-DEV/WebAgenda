@@ -34,13 +34,28 @@ export default function IndexContacts() {
 
     const { scrollToItem } = useScrollToItem();
 
-    async function scrollItems() {
-        await scrollToItem(5);
-        await delay(1200);
-        await scrollToItem(7);
-        await delay(1200);
-        await scrollToItem(9);
+
+    async function linearSearch(targetName: string) {
+        const elements = document.querySelectorAll(".contact-card");
+        targetName = targetName.toLocaleLowerCase()
+        for (let i = 0; i < elements.length; i++) {
+            const element = elements[i] as HTMLElement;
+            const name = element.dataset.name?.trim().toLowerCase() ?? "";
+            console.log(name)
+            scrollToItem(i);
+            await delay(1100); // tempo de animação
+
+            if (name === targetName.toLowerCase()) {
+                console.log(`✅ Encontrado: ${name} no índice ${i}`);
+                element.classList.add("ring-2", "ring-primary");
+                await delay(2000)
+                element.classList.remove("ring-2", "ring-primary");
+                element.focus()
+                break;
+            }
+        }
     }
+
 
 
     useEffect(() => {
@@ -67,28 +82,24 @@ export default function IndexContacts() {
                                 <p className="text-sm text-muted-foreground">
                                     Filtros
                                 </p>
-                                <Button className="self-start" onClick={scrollItems}>5º item</Button>
+                                <Button className='self-start' onClick={() => { linearSearch('Danial Collier') }}>Busca Linear</Button>
                             </div>
 
                             <div className="grid auto-rows-min gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                                {contacts.map((contact, index) => (
+                                {contacts.map((contact) => (
                                     <Card
-                                        ref={(el) => (contactRefs.current[index] = el)}
                                         key={contact.id}
-                                        className="hover:bg-secondary/90 focus-visible:ring focus-visible:ring-primary outline-none contact-card"
+                                        className="hover:bg-secondary/90 contact-card"
                                         tabIndex={0}
+                                        data-name={contact.name} // <- aqui
                                     >
                                         <CardContent className="p-4">
-                                            <p>
-                                                <strong>Nome:</strong> {contact.name}
-                                            </p>
-                                            <p>
-                                                <strong>Telefone:</strong>{' '}
-                                                {contact.phone_number || '-'}
-                                            </p>
+                                            <p><strong>Nome:</strong> {contact.name}</p>
+                                            <p><strong>Telefone:</strong> {contact.phone_number || "-"}</p>
                                         </CardContent>
                                     </Card>
                                 ))}
+
                             </div>
                         </div>
                     </ResizablePanel>

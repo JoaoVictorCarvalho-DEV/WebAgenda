@@ -6,7 +6,8 @@ import {
     LayoutGrid,
     LifeBuoy,
     Search,
-    Send
+    Send,
+    UsersRound
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -41,7 +42,6 @@ const data = {
             title: "Contatos",
             url: "#",
             icon: Contact,
-            isActive: true,
             items: [
                 {
                     title: "Ver contatos",
@@ -54,6 +54,11 @@ const data = {
                     icon: ContactIcon
                 },
             ],
+        },
+        {
+            title: "Grupo de Contatos",
+            url: "#",
+            icon: UsersRound,
         },
     ],
     navSecondary: [

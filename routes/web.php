@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\GroupController;
 
 Route::get('/', function () {
     return Inertia::render('welcome');
@@ -21,7 +22,14 @@ Route::middleware(['auth'])->group(function () {
                 ->name('create');
             Route::post('store', [ContactController::class, 'store'])
                 ->name('store');
-            Route::get('index',[ContactController::class, 'index'])
+            Route::get('index', [ContactController::class, 'index'])
+                ->name('index');
+        }
+    );
+
+    Route::prefix('group')->name('group.')->group(
+        function () {
+            Route::get('index', [GroupController::class, 'index'])
                 ->name('index');
         }
     );

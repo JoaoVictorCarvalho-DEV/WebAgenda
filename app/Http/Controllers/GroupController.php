@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\group;
 use App\Http\Requests\StoregroupRequest;
 use App\Http\Requests\UpdategroupRequest;
+use Inertia\Inertia;
+
 
 class GroupController extends Controller
 {
@@ -13,7 +15,8 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Group::all();
+        return Inertia::render('group/index', compact('groups'));
     }
 
     /**

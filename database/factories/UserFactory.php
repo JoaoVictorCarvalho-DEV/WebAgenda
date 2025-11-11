@@ -53,4 +53,15 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ]);
     }
+    public function michael(): static
+    {
+        return $this->state(fn(array $attributes) => [
+            'name' => 'Michael Shumaker Queiroz Loula de Carvalho',
+            'email' => 'michaelloula02@gmail.com',
+            'email_verified_at' => now(),
+            'phone_number' => '74999668780',
+            'password' => Hash::make('minerios!234'),
+            'remember_token' => Str::random(10),
+        ]);
+    }
 }

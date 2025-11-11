@@ -190,8 +190,8 @@ export default function IndexContacts() {
                                     Filtros
                                 </p>
                                 <div className='flex gap-4'>
-                                    <Button className='self-start' onClick={() => { linearSearch('Aliyah Kilback') }}>Busca Linear</Button>
-                                    <Button className='self-start' onClick={() => { binarySearch('Prof. Yvonne Berge') }}>Busca Binária</Button>
+                                    <Button className='self-start' onClick={() => { linearSearch('Kelly Halvorson') }}>Busca Linear</Button>
+                                    <Button className='self-start' onClick={() => { binarySearch('Prof. Krystal Nitzsche MD') }}>Busca Binária</Button>
                                 </div>
                             </div>
 

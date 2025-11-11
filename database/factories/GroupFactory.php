@@ -17,7 +17,8 @@ class GroupFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->city(),
+            'description' => fake()->text(50)
         ];
     }
 }

@@ -57,7 +57,7 @@ const data = {
         },
         {
             title: "Grupo de Contatos",
-            url: "#",
+            url: "/group/index",
             icon: UsersRound,
         },
     ],

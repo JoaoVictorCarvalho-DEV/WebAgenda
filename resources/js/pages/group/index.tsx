@@ -175,7 +175,7 @@ export default function IndexGroups() {
         setHighlightedIds([])
     }
 
-    // =================== QUICK SORT (gera passos + métricas) ===================
+    // =================== QUICK SORT ===================
     function generateQuickSortSteps(
         arr: GroupType[],
         compareFn: (a: GroupType, b: GroupType) => number
@@ -185,6 +185,8 @@ export default function IndexGroups() {
         let comparisons = 0
         let swaps = 0
 
+
+        /* RECURSÃO AQUI!!! */
         function quickSort(low: number, high: number) {
             if (low < high) {
                 const p = partition(low, high)
@@ -196,6 +198,7 @@ export default function IndexGroups() {
         function partition(low: number, high: number) {
             const pivot = a[high]
             let i = low - 1
+
             for (let j = low; j < high; j++) {
                 comparisons++
                 if (compareFn(a[j], pivot) <= 0) {

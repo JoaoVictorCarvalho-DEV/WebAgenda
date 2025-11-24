@@ -129,6 +129,9 @@ não existe backend funcional além da inicialização do projeto.
 Este projeto é apenas para fins educacionais.
 Sinta-se livre para estudar, copiar ou melhorar como desejar.
 
+💡 Fontes
+Nosso trabalho teve fortes inspirações no site [Visualgo.net](https://visualgo.net/en), também utilizamos o conhecimento adquirido no [CloudEducationBrazil](https://github.com/CloudEducationBrazil), repositório do professor Heleno para nossas aulas.
+
 🙌 Agradecimentos
 
 Agradecemos ao professor Heleno Cardoso pela orientação.

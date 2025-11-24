@@ -40,38 +40,37 @@ interface PagePropsContacts {
 
 interface ComparisonData {
     name: string;
-    time: number; // Tempo em ms
-    steps: number; // Quantidade de passos/saltos
+    time: number;
+    steps: number;
 }
 
-// Dados Mockados para Comparação
+
 const mockComparisonData: ComparisonData[] = [
     { name: 'Busca Linear', time: 15.5, steps: 50 },
     { name: 'Busca Binária', time: 0.8, steps: 6 },
-    // Você pode adicionar um terceiro cenário (Busca com Trie) futuramente
 ];
 
-export function MetricsChart() {
+export function MetricsChart({ data }: { data: ComparisonData[] }) {
     return (
         <div className="h-[250px] w-full p-4">
             <h4 className="text-sm font-semibold mb-2">Tempo de Execução (ms)</h4>
             <ResponsiveContainer width="100%" height="100%">
                 <BarChart
-                    data={mockComparisonData}
+                    data={data}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
-                    <Tooltip
-                        formatter={(value, name) => [`${value} ms`, name]}
-                    />
-                    <Bar dataKey="time" fill="#3b82f6" name="Tempo" />
+                    <Tooltip formatter={(value, name) => [`${value}`, name]} />
+                    <Bar dataKey="time" fill="#3b82f6" name="Tempo (ms)" />
+                    <Bar dataKey="steps" fill="#10b981" name="Saltos" />
                 </BarChart>
             </ResponsiveContainer>
         </div>
     );
 }
+
 
 export default function IndexContacts() {
     const { success, contacts } = usePage<PagePropsContacts>().props
@@ -79,6 +78,11 @@ export default function IndexContacts() {
     const contactRefs = useRef<(HTMLDivElement | null)[]>([])
 
     const [selectedName, setSelectedName] = useState("");
+
+    const [chartData, setChartData] = useState([
+        { name: "Busca Linear", time: 0, steps: 0 },
+        { name: "Busca Binária", time: 0, steps: 0 },
+    ]);
 
     //Métricas
     const [jumpQtd, setJumpQtd] = useState(0);
@@ -103,23 +107,33 @@ export default function IndexContacts() {
             scrollToItem(i);
             await delay(1100); // tempo de animação
 
+            jumps++;
             if (name === targetName) {
                 console.log(`✅ Encontrado: ${name} no índice ${i}`);
                 element.classList.add("ring-2", "ring-primary");
-                await delay(2000)
+                await delay(1100)
                 element.classList.remove("ring-2", "ring-primary");
                 element.focus()
                 break;
             }
-            jumps++;
         }
 
         const endTime = performance.now(); // Fim da medição
-        const timeElapsed = endTime - startTime; // Tempo em milissegundos
+        let timeElapsed = endTime - startTime;
+        timeElapsed = timeElapsed - ( (jumps + 1) * 1100 );
         setJumpQtd(jumps);
         setExecutionTime(timeElapsed);
         setSearchType('Busca Linear');
         setComplexity('O(N)');
+
+        setChartData(prev =>
+            prev.map(item =>
+                item.name === "Busca Linear"
+                    ? { ...item, time: timeElapsed, steps: jumps }
+                    : item
+            )
+        );
+
     }
 
     async function binarySearch(targetName: string) {
@@ -158,14 +172,21 @@ export default function IndexContacts() {
             jumps++;
         }
         const endTime = performance.now(); // Fim da medição
-        const timeElapsed = endTime - startTime; // Tempo em milissegundos
+        let timeElapsed = endTime - startTime; // Tempo em milissegundos
+        timeElapsed = timeElapsed - ( (jumps + 1) * 2000 );
         setJumpQtd(jumps);
         setExecutionTime(timeElapsed);
         setSearchType('Busca Binária');
         setComplexity('O(log N)');
+
+        setChartData(prev =>
+            prev.map(item =>
+                item.name === "Busca Binária"
+                    ? { ...item, time: timeElapsed, steps: jumps }
+                    : item
+            )
+        );
     }
-
-
 
     useEffect(() => {
         if (success && success.message) {
@@ -230,7 +251,7 @@ export default function IndexContacts() {
                                         key={contact.id}
                                         className="hover:bg-secondary/90 contact-card"
                                         tabIndex={0}
-                                        data-name={contact.name} // <- aqui
+                                        data-name={contact.name}
                                     >
                                         <CardContent className="p-4">
                                             <p><strong>Nome:</strong> {contact.name}</p>
@@ -281,17 +302,14 @@ export default function IndexContacts() {
                                             <p className="text-3xl font-bold text-green-600">
                                                 {executionTime.toFixed(2)} ms
                                             </p>
-                                            <p className="text-xs text-muted-foreground mt-1">
-                                                Com o tempo de animação.
-                                            </p>
+
                                         </CardContent>
                                     </Card>
                                 </div>
 
                                 <Card className="mt-4">
-                                    <MetricsChart />
+                                    <MetricsChart data={chartData} />
                                 </Card>
-
 
                             </div>
                         </div>

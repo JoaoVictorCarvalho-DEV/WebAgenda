@@ -78,11 +78,13 @@ export default function IndexContacts() {
 
     const contactRefs = useRef<(HTMLDivElement | null)[]>([])
 
+    const [selectedName, setSelectedName] = useState("");
+
     //Métricas
     const [jumpQtd, setJumpQtd] = useState(0);
     const [executionTime, setExecutionTime] = useState(0);
     const [searchType, setSearchType] = useState('Nenhuma');
-    const[complexity, setComplexity] = useState('Nenhuma');
+    const [complexity, setComplexity] = useState('Nenhuma');
 
     const { scrollToItem } = useScrollToItem();
 
@@ -186,12 +188,39 @@ export default function IndexContacts() {
 
                             <div className="mb-2 border-b pb-2">
                                 <h2 className="text-lg font-semibold">Contatos</h2>
-                                <p className="text-sm text-muted-foreground">
-                                    Filtros
-                                </p>
-                                <div className='flex gap-4'>
-                                    <Button className='self-start' onClick={() => { linearSearch('Kelly Halvorson') }}>Busca Linear</Button>
-                                    <Button className='self-start' onClick={() => { binarySearch('Prof. Krystal Nitzsche MD') }}>Busca Binária</Button>
+                                <p className="text-sm text-muted-foreground">Filtros</p>
+
+                                <div className="flex gap-4 items-center">
+
+                                    {/* DROPDOWN COM OS NOMES */}
+                                    <select
+                                        className="border rounded-md p-2 bg-background"
+                                        value={selectedName}
+                                        onChange={(e) => setSelectedName(e.target.value)}
+                                    >
+                                        <option value="">Selecione um contato...</option>
+                                        {contacts.map((c) => (
+                                            <option key={c.id} value={c.name}>
+                                                {c.name}
+                                            </option>
+                                        ))}
+                                    </select>
+
+                                    {/* BOTÕES DE BUSCA */}
+                                    <Button
+                                        disabled={!selectedName}
+                                        onClick={() => linearSearch(selectedName)}
+                                    >
+                                        Busca Linear
+                                    </Button>
+
+                                    <Button
+                                        disabled={!selectedName}
+                                        onClick={() => binarySearch(selectedName)}
+                                    >
+                                        Busca Binária
+                                    </Button>
+
                                 </div>
                             </div>
 
@@ -253,7 +282,7 @@ export default function IndexContacts() {
                                                 {executionTime.toFixed(2)} ms
                                             </p>
                                             <p className="text-xs text-muted-foreground mt-1">
-                                                Na sua máquina, com o tempo de animação.
+                                                Com o tempo de animação.
                                             </p>
                                         </CardContent>
                                     </Card>

@@ -34,11 +34,6 @@ const data = {
     },
     navMain: [
         {
-            title: 'Dashboard',
-            url: '/dashboard',
-            icon: LayoutGrid,
-        },
-        {
             title: "Contatos",
             url: "#",
             icon: Contact,

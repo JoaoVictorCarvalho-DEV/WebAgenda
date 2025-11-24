@@ -19,7 +19,6 @@ Este projeto foi criado para visualizar, comparar e entender o funcionamento de 
 
 ![alt text](video_busca.gif)
 
---- 
 
 ### 🔄 Ordenação
 

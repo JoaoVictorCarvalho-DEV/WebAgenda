@@ -9,17 +9,19 @@ export interface BreadcrumbItem {
     href: string;
 }
 
-export interface NavGroup {
-    title: string;
-    items: NavItem[];
-}
-
 export interface NavItem {
     title: string;
     url: string;
     icon?: LucideIcon | null;
-    isActive?: boolean;
 }
+
+export interface NavGroup {
+    title: string;
+    items: NavItem[];
+    icon?: LucideIcon | null;
+}
+
+export type NavElement = NavItem | NavGroup;
 
 export interface SharedData {
     name: string;
@@ -34,7 +36,24 @@ export interface User {
     email: string;
     avatar?: string;
     email_verified_at: string | null;
+    phone_number?: string;
     created_at: string;
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
+}
+
+export interface Contact {
+    id: number;
+    name: string;
+    phone_number: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Group {
+    id: number;
+    name: string;
+    description: string;
+    created_at: string;
+    updated_at: string;
 }

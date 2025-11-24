@@ -1,41 +1,88 @@
-import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
-import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
-import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, TestTube} from 'lucide-react';
+import * as React from "react"
+import {
+    Contact,
+    ContactIcon,
+    Frame,
+    LayoutGrid,
+    LifeBuoy,
+    Search,
+    Send,
+    UsersRound
+} from "lucide-react"
+
+import { NavMain } from "@/components/nav-main"
+import { NavSecondary } from "@/components/nav-secondary"
+import { NavUser } from "@/components/nav-user"
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar"
+
 import AppLogo from './app-logo';
+import { Link } from '@inertiajs/react';
 
-const mainNavItems: NavItem[] = [
-    {
-        title: 'Dashboard',
-        url: '/dashboard',
-        icon: LayoutGrid,
+const data = {
+    user: {
+        name: "shadcn",
+        email: "m@example.com",
+        avatar: "/avatars/shadcn.jpg",
     },
-    {
-        title: 'Rota de teste',
-        url: '/',
-        icon: TestTube,
-    },
-];
+    navMain: [
+        {
+            title: "Contatos",
+            url: "#",
+            icon: Contact,
+            items: [
+                {
+                    title: "Ver contatos",
+                    url: "/contact/index",
+                    icon: Search
+                },
+                {
+                    title: "Adicionar novo contato",
+                    url: "/contact/create",
+                    icon: ContactIcon
+                },
+            ],
+        },
+        {
+            title: "Grupo de Contatos",
+            url: "/group/index",
+            icon: UsersRound,
+        },
+    ],
+    navSecondary: [
+        {
+            title: "Support",
+            url: "#",
+            icon: LifeBuoy,
+        },
+        {
+            title: "Feedback",
+            url: "#",
+            icon: Send,
+        },
+    ],
+    projects: [
+        {
+            name: "Design Engineering",
+            url: "#",
+            icon: Frame,
+        },
+    ],
+}
 
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        url: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        url: 'https://laravel.com/docs/starter-kits',
-        icon: BookOpen,
-    },
-];
-
-export function AppSidebar() {
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     return (
-        <Sidebar collapsible="icon" variant="inset">
+        <Sidebar
+            className="top-[--header-height] !h-[calc(100svh-var(--header-height))]"
+            {...props}
+        >
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
@@ -47,15 +94,15 @@ export function AppSidebar() {
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-
             <SidebarContent>
-                <NavMain items={mainNavItems} />
-            </SidebarContent>
+                <NavMain items={data.navMain} />
 
+                {/* <NavProjects projects={data.projects} /> */}
+                <NavSecondary items={data.navSecondary} className="mt-auto" />
+            </SidebarContent>
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
-    );
+    )
 }

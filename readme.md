@@ -132,13 +132,9 @@ npm run dev
 Este projeto é apenas para fins educacionais.
 Sinta-se livre para estudar, copiar ou melhorar como desejar.
 
-<<<<<<< HEAD
 💡 Fontes
 Nosso trabalho teve fortes inspirações no site [Visualgo.net](https://visualgo.net/en), também utilizamos o conhecimento adquirido no [CloudEducationBrazil](https://github.com/CloudEducationBrazil), repositório do professor Heleno para nossas aulas.
 
 🙌 Agradecimentos
-=======
-## 🙌 Agradecimentos
->>>>>>> 0062d0d2b537080a2cdb4d6a7983ee547c246071
 
 Agradecemos ao professor Heleno Cardoso pela orientação.

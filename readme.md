@@ -3,11 +3,11 @@ Demonstração interativa de algoritmos de busca e ordenação
 
 Trabalho final desenvolvido para a disciplina Algoritmos e Complexidade, ministrada pelo professor Heleno Cardoso.
 
-Integrantes do grupo:
+## 👥 Integrantes do grupo:
 
-João Víctor Miranda
+- João Víctor Miranda
 
-Michael Loula
+- Michael Loula
 
 ## 🎯 Objetivo do Projeto
 
@@ -28,35 +28,35 @@ Este projeto foi criado para visualizar, comparar e entender o funcionamento de 
 A aplicação não possui utilidade prática além do contexto acadêmico.
 Sua função é didática, permitindo observar:
 
-Execução passo a passo
+- Execução passo a passo
 
-Comparações
+- Comparações
 
-Trocas
+- Trocas
 
-Tempo total
+- Tempo total
 
-Métricas detalhadas
+- Métricas detalhadas
 
-Representações animadas
+- Representações animadas
 
 ## 🛠️ Tecnologias Utilizadas
 
 Este projeto foi desenvolvido utilizando:
 
-Laravel + Vite
+- Laravel + Vite
 
-React (Starter Kit oficial do Laravel)
+- React (Starter Kit oficial do Laravel)
 
-TypeScript
+- TypeScript
 
-TailwindCSS
+- TailwindCSS
 
-Recharts (para gráficos de métricas)
+- Recharts (para gráficos de métricas)
 
-Lucide Icons
+- Lucide Icons
 
-React Resizable Panels
+- React Resizable Panels
 
 ## ⚙️ Funcionalidades
 ### 🔄 Algoritmos de Ordenação
@@ -64,7 +64,7 @@ React Resizable Panels
 - QuickSort
 
 
-### Cada algoritmo permite:
+Cada algoritmo permite:
 
 - Execução instantânea
 
@@ -80,7 +80,7 @@ React Resizable Panels
 
 - Busca Binária
 
-### Com:
+Com:
 
 - Animação passo a passo
 
@@ -91,44 +91,47 @@ React Resizable Panels
 
 A aplicação exibe automaticamente:
 
-Tempo total da execução
+- Tempo total da execução
 
-Comparações realizadas
+- Comparações realizadas
 
-Trocas executadas
+- Trocas executadas
 
-Quantidade de passos
+- Quantidade de passos
 
-Gráfico interativo atualizado em tempo real
+- Gráfico interativo atualizado em tempo real
 
-🚀 Como executar o projeto
+### 🚀 Como executar o projeto
+
 1️⃣ Instale as dependências do Laravel
+```
 composer install
-
+```
 2️⃣ Instale as dependências do frontend
+```
 npm install
+```
 
 3️⃣ Inicialize o servidor de desenvolvimento
 
-Backend:
-
+**Backend:**
+```
 php artisan serve
-
+```
 
 Frontend:
-
+```
 npm run dev
+```
+
+> **Observação:** O frontend React conversa com Laravel apenas como camada de visualização - não existe backend funcional além da inicialização do projeto.
 
 
-O frontend React conversa com Laravel apenas como camada de visualização —
-não existe backend funcional além da inicialização do projeto.
-
-
-📜 Licença
+## 📜 Licença
 
 Este projeto é apenas para fins educacionais.
 Sinta-se livre para estudar, copiar ou melhorar como desejar.
 
-🙌 Agradecimentos
+## 🙌 Agradecimentos
 
 Agradecemos ao professor Heleno Cardoso pela orientação.

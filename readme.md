@@ -119,7 +119,7 @@ npm install
 php artisan serve
 ```
 
-Frontend:
+**Frontend:**
 ```
 npm run dev
 ```

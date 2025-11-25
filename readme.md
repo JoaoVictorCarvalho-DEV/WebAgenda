@@ -16,7 +16,6 @@ Este projeto foi criado para visualizar, comparar e entender o funcionamento de 
 ### 🔍 Busca
 
 
-
 ![alt text](video_busca.gif)
 
 --- 
@@ -130,11 +129,9 @@ npm run dev
 ## 📜 Licença
 
 Este projeto é apenas para fins educacionais.
-Sinta-se livre para estudar, copiar ou melhorar como desejar.
 
-💡 Fontes
-Nosso trabalho teve fortes inspirações no site [Visualgo.net](https://visualgo.net/en), também utilizamos o conhecimento adquirido no [CloudEducationBrazil](https://github.com/CloudEducationBrazil), repositório do professor Heleno para nossas aulas.
+💡 Fontes Nosso trabalho teve fortes inspirações no site [Visualgo.net](https://visualgo.net/en), também utilizamos o conhecimento adquirido no [CloudEducationBrazil](https://github.com/CloudEducationBrazil), repositório do professor Heleno para nossas aulas.
 
-🙌 Agradecimentos
+## 🙌 Agradecimentos
 
 Agradecemos ao professor Heleno Cardoso pela orientação.
